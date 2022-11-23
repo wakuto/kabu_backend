@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: node:lts
+    image: node:18
     container_name: stock_json_backend
     tty: true
     volumes:
