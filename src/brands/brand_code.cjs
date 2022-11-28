@@ -16,7 +16,17 @@ console.log("initializing...");
 register_brand()
   .then( () => {
     console.log("initialize complete.");
+    console.log(module.paths)
+    module.exports = db;
   });
+
+async function get_brand_name_by_id(id) {
+  return db.any("SELECT * FROM brand_details WHERE brand_code=$1", [id]);
+}
+
+async function get_brand_code_by_name(name) {
+  return db.any("SELECT * FROM brand_details WHERE brand_name=$1", [name]);
+}
 
 
 // 銘柄情報の登録を行う関数
