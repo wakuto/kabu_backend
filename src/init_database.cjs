@@ -1,26 +1,19 @@
-const pgp = require('pg-promise')();
-const XLSX = require('xlsx');
-
-const pg_conf = {
-  host: 'db',
-  port: 5432,
-  database: 'stock_db',
-  user: 'db_user',
-  password: 'passw0rd',
-  max: 30
-};
-
-db = pgp(pg_conf);
-
-module.exports = {
-  db,
-  init_db,
-}
-
-
-
 // 銘柄情報の登録を行う関数
-async function init_db(db) {
+async function init_db() {
+  const pgp = require('pg-promise')();
+  const XLSX = require('xlsx');
+
+  const pg_conf = {
+    host: 'db',
+    port: 5432,
+    database: 'stock_db',
+    user: 'db_user',
+    password: 'passw0rd',
+    max: 30
+  };
+
+  db = pgp(pg_conf);
+
   console.log("initializing...");
   const url = "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls"
   console.log(`data fetch from ${url}`);
@@ -60,6 +53,9 @@ async function init_db(db) {
     }
   }
   console.log("initialize complete.");
+  return db;
 }
 
-
+module.exports = {
+  init_db
+}

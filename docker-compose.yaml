@@ -10,6 +10,7 @@ services:
     volumes:
       - ./src:/src
     working_dir: "/src"
+    command: node index.cjs
   db:
     image: postgres
     container_name: postgres
