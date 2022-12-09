@@ -1,8 +1,10 @@
 from pygooglenews import GoogleNews
 import pandas as pd
+import sys
+
 #言語および地域指定(もちろん日本以外も可)
- 
 gn = GoogleNews(lang = 'ja', country = 'JP')
+
 def get_titles(search):
 
     news = []
@@ -15,22 +17,14 @@ def get_titles(search):
             'date': item.published
         }
         news.append(titles)
-
     df_news = pd.DataFrame(news)
     news_data = df_news.head().to_json(force_ascii=False, orient='records', date_format='iso', indent=2)
-    print(news_data)
-    return news_data 
 
-#get_titles('sony')
+    return news_data
 
-"""
+#銘柄コード
+code = sys.stdin.readline()
 #実行
-news = get_titles('sony')
+news = get_titles(code)
 
-#データ確認用
-df_news = pd.DataFrame(news)
-df_news.head()
-
-news = df_news.head().to_json(force_ascii=False, orient='records', date_format='iso', indent=2)
 print(news)
-"""

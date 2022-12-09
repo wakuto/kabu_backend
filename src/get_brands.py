@@ -5,11 +5,15 @@ import json
 from datetime import date, datetime
 import sys
 
-#get_brands_data.jsからデータを受信
-#data = sys.stdin.readline()
-code = 3323 #銘柄コード
-period = 3 #取得する長さ(month)
-duration = 1 #データの取得頻度(day)
+#code = 3323 #銘柄コード
+#period = 3 #取得する長さ(month)
+#duration = 1 #データの取得頻度(day)
+
+#get_brands_data.jsからのデータ受信
+data = json.loads(sys.stdion.readline())
+code = data["code"]
+period = data["period"]
+duration = data["duration"]
 
 #銘柄データを取得し、JSONファイルに出力
 def get_stock(code, period, duration):
@@ -30,10 +34,7 @@ def get_stock(code, period, duration):
     df = pd.DataFrame({'datetime': [datetime.fromtimestamp(d/1000) for d in symbol_data['timestamp']        ],'close' : symbol_data['close']})
 
     df.datetime = df.datetime.dt.date
-    #print(df)
     data = df.to_json(orient='records', date_format='iso', indent=2)
     print(data)
-    with open('kabu.json', 'w') as f:
-        json.dump(data, f)
 
 get_stock(code, period, duration)
