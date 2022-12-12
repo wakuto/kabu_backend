@@ -4,7 +4,7 @@ async function get_brand_name_by_id(db, id) {
     throw new Error("there is no data!");
   }
   const name = data[0]['brand_name'];
-  return JSON.stringify(name);
+  return {"brand_name": name};
 }
 
 async function get_brand_code_by_name(db, name) {
@@ -12,8 +12,8 @@ async function get_brand_code_by_name(db, name) {
   if(data.length < 1) {
     throw new Error("there is no data!");
   }
-  const code = data[0]['brand_code'];
-  return JSON.stringify(code);
+  const code = parseInt(data[0]['brand_code']);
+  return {"brand_code": code};
 }
 
 module.exports = {

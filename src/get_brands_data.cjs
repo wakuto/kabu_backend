@@ -21,3 +21,7 @@ async function get_brands_data(id, period, duration){
 
    shell.end();
 }
+
+module.exports = {
+  get_brands_data,
+}

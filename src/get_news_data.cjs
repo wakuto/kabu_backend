@@ -16,3 +16,6 @@ async function get_news_data(id){
    
 }
 
+module.exports = {
+  get_news_data,
+}

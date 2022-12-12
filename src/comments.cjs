@@ -1,7 +1,7 @@
 async function get_comments(db, id) {
-  const data = await db.any("SELECT * FROM comments WHERE brand_code=$1", [id]);
+  let data = await db.any("SELECT * FROM comments WHERE brand_code=$1", [id]);
   if (data.length < 1) {
-    throw new Error("there is no data!");
+    data = [];
   }
   // dataの中のpost_date, mentioned_dateフィールドをYYYY-MM-DDTHH:MM:SS+09:00形式にしたい
   // 2022-11-11T00:00:00.000Z
@@ -15,9 +15,7 @@ async function get_comments(db, id) {
   return {"comments_list": data};
 }
 
-async function append_comment(db, id, json_text) {
-  const json = JSON.parse(json_text);
-
+async function append_comment(db, id, json) {
   const rows = `brand_code, comments, post_date, mentioned_date, related_news`;
 
   const args = [
