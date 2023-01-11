@@ -3,8 +3,5 @@
 
 ```shell
 # コンテナの起動
-docker-compose up -d
-
-# node-jsの実行
-docker-compose run --rm app node index.js
+docker-compose up
 ```
