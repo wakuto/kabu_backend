@@ -55,7 +55,8 @@ init.init_db().then((db) => {
 
   app.get("/:id/news", async (req, res) => {
     try {
-      const json = await news.get_news_data(req.params.id);
+      const brand_json = await brands.get_brand_name_by_id(db, req.params.id);
+      const json = await news.get_news_data(brand_json.brand_name);
       res.json(json);
     } catch (err) {
       errorHandler(req, res, err);
