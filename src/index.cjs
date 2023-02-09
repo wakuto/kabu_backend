@@ -63,13 +63,12 @@ init.init_db().then((db) => {
     }
   });
 
-  app.get("/:id/details/:period/:duration", async (req, res) => {
+  app.get("/:id/details/:period", async (req, res) => {
     try {
       const id = req.params.id;
       const period = req.params.period;
-      const duration = req.params.duration;
 
-      const json = await brands_data.get_brands_data(id, period, duration);
+      const json = await brands_data.get_brands_data(id, period);
       res.json(json);
     } catch (err) {
       errorHandler(req, res, err);

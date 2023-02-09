@@ -13,7 +13,8 @@
     "express": "^4.18.2",
     "feedparser": "^2.2.10",
     "pg-promise": "^10.15.2",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "yahoo-finance2": "^2.3.10"
   },
   "author": "",
   "license": "ISC",

@@ -45,7 +45,7 @@ async function get_news_data(brand_name){
     list = news_list;
   });
 
-  return { "news": list};
+  return {"news": list};
 }
 
 module.exports = {
